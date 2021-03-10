@@ -1,0 +1,29 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {% set switch_sidebar = theme.theme_mod('sidebar_blog_toggleSwitch_setting') %}
+    <div id="content" class="site-content">
+        <section class="container">
+            <div class="row">
+                <div class="col-12 {{ (not switch_sidebar) ? 'col-md-12' : 'col-md-8' }}">
+                    {% if is_home and not is_front_page %}
+                        <h1 class="page-title">{{ post.title }}</h1>
+                    {% endif %}
+                    {% if posts is not empty %}
+                        {% for post in posts %}
+                            {% include 'template-parts/content.twig' %}
+                        {% endfor %}
+                        {% include 'template-parts/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+                    {% else %}
+                        {% include 'template-parts/content-none.twig' %}
+                    {% endif %}
+                </div><!-- #first -->
+                {% if is_home %}
+                    {% if switch_sidebar %}
+                        {% include 'sidebar.twig' %}
+                    {% endif %}
+                {% endif %}
+            </div><!-- .row -->
+        </section><!-- .container -->
+    </div><!-- #content -->
+{% endblock %}

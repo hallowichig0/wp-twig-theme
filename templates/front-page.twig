@@ -1,0 +1,13 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div id="content" class="site-content">
+        <section class="container">
+            <h1>{{ post.title }}</h1>
+            <div class="row">
+                {% include 'template-parts/content-page.twig' %}
+            </div><!-- .row -->
+        </section><!-- .container -->
+    </div><!-- #content -->
+{% endblock %}

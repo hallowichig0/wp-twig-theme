@@ -1,0 +1,21 @@
+/* Social Media Icon */
+
+.social-media {
+    h5 {
+        font-size: 1.10rem;
+    }
+
+    .social-menu {
+        a {
+            &:hover {
+                text-decoration: none !important;
+            }
+            .social-icon {
+                width: 25px;
+                height: 25px;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+}

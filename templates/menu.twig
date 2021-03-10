@@ -1,0 +1,33 @@
+{% if menu %}
+	<ul class="nav navbar-nav mx-auto mt-3 mt-md-0">
+	{% for item in menu.get_items %}
+        {% set child = item.get_children %}
+
+		<li id="menu-item-{{ item.id }}" class="{{item.classes|join(' ')}} {{ (child is not empty) ? ' dropdown' }} nav-item">
+            {% 
+                set link_classes = [
+                    'nav-link px-md-4 ml-2 ml-md-0',
+                    child is not empty ? 'dropdown-toggle',
+                ]
+            %}
+            {%
+                set link_attribute = [
+                    'data-toggle="dropdown"',
+					'role="button"',
+					'aria-haspopup="true"',
+					'aria-expanded="false"',
+                ]
+            %}
+			<a href="{{item.get_link}}" target="{{ item.target }}" class="{{ link_classes|join(' ') }}" {{ (child is not empty) ? link_attribute|join(' ') }}>
+				{{item.title}}
+				{% if child is not empty %}
+                    <span class="caret"></span>
+                {% endif %}
+			</a>
+			{% if child is not empty %}
+				{% include "dropdown-menu.twig" with {'menu': item.get_children} %}
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}

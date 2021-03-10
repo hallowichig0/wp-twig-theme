@@ -1,0 +1,35 @@
+<div class="card my-4">
+    <div id="respond" class="comment-respond">
+        <h5 class="card-header">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="{{ post.link }}#respond">Cancel reply</a></small></h5>
+        <div class="card-body">
+            <form id="commentform" class="comment-form" method="post" action="{{ site.site_url~'/wp-comments-post.php' }}">
+                {% if user %}
+                    <p class="logged-in-as">
+                        <a href="{{ fn('get_edit_profile_url') }}" aria-label="Logged in as {{ user.display_name }}. Edit your profile.">Logged in as {{ user.display_name }}</a>. <a href="{{ fn('wp_logout_url') }}">Log out?</a>
+                    </p>
+                    <input type="hidden" name="email" value="{{ user.email }}">
+                    <input type="hidden" name="author" value="{{ user.name }}">
+                    <input type="hidden" name="url" value="{{ user.link }}">
+                {% else %}
+                    <label for="email">Email*
+                        <input id="email" name="email" type="email" class="form-control" aria-describedby="email-notes" maxlength="100" required>
+                    </label>
+                    <label for="author">Name*
+                        <input id="author" name="author" type="text" class="form-control" maxlength="245" required>
+                    </label>
+                    <label for="url">Website
+                        <input id="url" name="url" type="url" class="form-control" maxlength="200">
+                    </label>
+                {% endif %}
+                <div class="form-group">
+                    <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Leave a comment..."></textarea>
+                </div>
+                <div class="form-submit">
+                    <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit">
+                    <input id="comment_post_ID" name="comment_post_ID" value="{{ post.id }}" type="hidden">
+                    <input id="comment_parent" name="comment_parent"  value="{{ comment.ID|default('0') }}" type="hidden">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

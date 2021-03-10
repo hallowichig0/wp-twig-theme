@@ -1,0 +1,36 @@
+/*
+Theme Name: Bootstrap4 Theme
+Author: Jayson Garcia
+Author URI: http://jegson.herokuapp.com/
+Description: My personal boiler theme.
+Version: 1.0.12
+Tags: Bootstrap 4, SCSS, Kirki, ACF
+Text Domain: bootstrap4
+*/
+
+/* Your custom partials here */
+@import "partials/variables";
+@import "partials/mixin";
+@import "partials/animations";
+@import "partials/global";
+@import "partials/admin";
+@import "partials/header";
+@import "partials/footer";
+@import "partials/overrides";
+@import "partials/social-media";
+@import "partials/comment"; // comments style for blog
+@import "partials/plain";
+@import "partials/blur";
+
+/* Your fonts here */
+@import "partials/fonts";
+
+/* Your posts style here */
+@import "posts/single"; // single post style
+
+/* Your pages style here */
+@import "pages/front";
+@import "pages/home";
+
+/* Your woocommerce style here */
+// @import 'woocommerce/woocommerce'; // _woocommerce.scss

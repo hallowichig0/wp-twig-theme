@@ -1,0 +1,16 @@
+/*
+ * Admin Style
+ */
+.admin-bar {
+    .sticky-header {
+        top: 32px;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .admin-bar {
+        .sticky-header {
+            top: 46px;
+        }
+    }
+}

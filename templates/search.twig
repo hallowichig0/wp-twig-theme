@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div id="content" class="site-content">
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="page-title">Search Results for: <span>{{ search_query }}</span></h1>
+                    {% if posts is not empty %}
+                        {% for post in posts %}
+                            {% include 'template-parts/content.twig' %}
+                        {% endfor %}
+                        {% include 'template-parts/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+                    {% else %}
+                        {% include 'template-parts/content-none.twig' %}
+                    {% endif %}
+                </div>
+            </div><!-- .row -->
+        </section><!-- .container -->
+    </div><!-- #content -->
+{% endblock %}

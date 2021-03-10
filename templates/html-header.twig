@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+<head>
+	<meta charset="{{ site.charset }}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>{{ site.name }} {{ wp_title }}</title>
+	{{ wp_head }}
+	{% block head %}
+	{% endblock %}
+</head>
+<body class="{{body_class}}" data-template="base.twig">
+	{{ fn('wp_body_open') }}
+	<!-- Loading Animation -->
+	<div class="pre-loader">
+		<div class="loader"></div>
+		<p>Please wait while loading...</p>
+	</div>
+	<header id="header" class="nav-header" >
+		{% block header %}
+			{% set header_bg = theme.theme_mod('header_background_field_setting') %}
+			{% set header_logoTitleColor = theme.theme_mod('header_logoColorTitle_field_setting') %}
+			{% set header_logoSubtitleColor = theme.theme_mod('header_logoColorSubTitle_field_setting') %}
+			<nav class="navbar nav-top" style="background-color:{{ (header_bg is not empty) ? header_bg : '#ffffff' }}">
+				<div class="container px-sm-0">
+					<div class="navbar-nav">
+						{# site logo, site name, site description #}
+						{% if site_logo is not empty %}
+							<a href="{{ site.url }}">
+								<img src="{{ site_logo }}" alt="{{ site.name }}" height="40px" width="100px">
+							</a>
+						{% else %}
+							<a class="navbar-brand col-md-6 px-0" style="color:{{ (header_logoTitleColor is not empty) ? header_logoTitleColor : '#000000' }}" class="navbar-brand" href="{{ site.url }}">
+								<h3 class="font-weight-bold" style="margin-bottom:0.3rem;">{{ site.name }}</h3>
+								{% if site.description is not empty %}
+									<h6 class="mb-0" style="color:{{ (header_logoSubtitleColor is not empty) ? header_logoSubtitleColor : '#000000' }}">
+										{{ site.description }}
+									</h6>
+								{% endif %}
+							</a>
+						{% endif %}
+					</div>
+
+					<div class="navbar-nav ml-sm-auto social-media">
+						{# header contact #}
+						{% set header_contactText = theme.theme_mod('header_contactText_field_setting') %}
+						{% set header_contactTextColor = theme.theme_mod('header_contactColor_field_setting') %}
+						{% if header_contactText and header_contactTextColor %}
+							<div class="navbar-brand col-md-6 px-0" style="padding-top:10px">
+								<a style="color:{{ (header_contactTextColor is not empty) ? header_contactTextColor : '#000000' }}" href="tel:{{ header_contactText }}">
+								<h5 class="mb-0">
+									<i class="fa fa-phone" aria-hidden="true" style="font-weight: 900"></i>
+									{{ header_contactText }}
+								</h5>
+								</a>
+							</div>
+						{% endif %}
+						
+						{# social media #}
+						{% set media_repeater = theme.theme_mod('header_social_media_repeater') %}
+						{% if media_repeater is not empty %}
+							<div class="navbar-brand col-md-6 px-0 py-0 social-menu">
+								{% set social_class = '' %}
+								{% for social_medias in media_repeater %}
+									{% if social_medias.header_social_media_select == 'fb' %}
+										{% set social_class = 'fa-facebook social-icon-fb' %}
+									{% elseif social_medias.header_social_media_select == 'instagram' %}
+										{% set social_class = 'fa-instagram social-icon-instagram' %}
+									{% elseif social_medias.header_social_media_select == 'twitter' %}
+										{% set social_class = 'fa-twitter social-icon-twitter' %}
+									{% elseif social_medias.header_social_media_select == 'pinterest' %}
+										{% set social_class = 'fa-pinterest social-icon-pinterest' %}
+									{% elseif social_medias.header_social_media_select == 'linkedin' %}
+										{% set social_class = 'fa-linkedin-square social-icon-linkedin' %}
+									{% endif %}
+									<a href="{{ social_medias.header_social_media_link }}" target="_blank"> <i class="social-icon fa {{ social_class }}" aria-hidden="true"></i></a>
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</nav>
+				{# {{ dump(menu.items) }} #}
+			<nav class="navbar navbar-expand-md nav-bottom" style="background-color: #343a40">
+				<div class="container">
+					<button class="navbar-toggler collapsed navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar top-bar"></span>
+						<span class="icon-bar middle-bar"></span>
+						<span class="icon-bar bottom-bar"></span>
+					</button>
+					<div id="navbarToggler" class="navbar-collapse collapse">
+					{% include "menu.twig" with {'menu': primary_menu} %} {# change the value of `menu: value.get_items` to your menu context #}
+					</div>
+				</div>
+			</nav>
+		{% endblock %}
+	</header>
+	<main id="primary" class="content-area main-wrapper">

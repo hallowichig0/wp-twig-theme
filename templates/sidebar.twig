@@ -1,0 +1,20 @@
+{% set widgets = theme.theme_mod('sidebar_blog_widget_repeater') %}
+
+{% if is_home or fn('is_singular', ['post']) %}
+
+    <!-- Sidebar Widgets Column -->
+    <aside id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+        {{ sidebar_blog }}
+        {% for widget in widgets %}
+            {% set select_widget = widget.sidebar_blog_select_widget %}
+            {% if select_widget == 'search' %}
+                {{ custom_widget_search() }}
+            {% elseif select_widget == 'category' %}
+                {{ custom_widget_category() }}
+            {% elseif select_widget == 'archive' %}
+                {{ custom_widget_archive() }}
+            {% endif %}
+        {% endfor %}
+    </aside><!-- #second -->
+
+{% endif %}

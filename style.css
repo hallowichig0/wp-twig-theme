@@ -1,0 +1,320 @@
+/*
+Theme Name: Bootstrap4 Theme
+Author: Jayson Garcia
+Author URI: http://jegson.herokuapp.com/
+Description: My personal boiler theme.
+Version: 1.0.12
+Tags: Bootstrap 4, SCSS, Kirki, ACF
+Text Domain: bootstrap4
+*/
+/* Your custom partials here */
+/*
+ * Variables
+ */
+/*
+ * Mixins
+ */
+/*
+ * Animations
+ */
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+/*
+ * Global
+ */
+#content.site-content {
+  padding-bottom: 3.75rem;
+  padding-top: 4.125rem; }
+
+.entry-title > a {
+  color: inherit; }
+
+body {
+  font-size: 16px;
+  line-height: 1.3em;
+  overflow-y: auto;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh; }
+
+main.main-wrapper {
+  flex-grow: 1; }
+
+p:last-of-type {
+  margin-bottom: 0; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+.container {
+  max-width: 1200px;
+  width: 100%; }
+
+.slick-slide {
+  line-height: 0; }
+
+/*
+ * Loading animation
+ */
+header.nav-header,
+main.main-wrapper,
+footer.site-footer {
+  opacity: 0; }
+
+.pre-loader {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 99999; }
+  .pre-loader .loader {
+    border: 10px solid #ada8a8;
+    -webkit-animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-top: 10px solid #343a40;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    margin: 0 auto;
+    text-align: center; }
+  .pre-loader p {
+    font-family: sans-serif;
+    color: #000000;
+    text-align: center;
+    margin-top: 20px; }
+
+/*
+ * Admin Style
+ */
+.admin-bar .sticky-header {
+  top: 32px; }
+
+@media screen and (max-width: 782px) {
+  .admin-bar .sticky-header {
+    top: 46px; } }
+/*
+ * Header
+ */
+/* Menu */
+.sticky-header-top {
+  margin-top: 88px; }
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030; }
+
+/* Hamburger Menu with animation */
+.navbar-toggler {
+  border: none;
+  background: transparent !important; }
+  .navbar-toggler .icon-bar {
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    transition: all 0.2s;
+    margin-top: 7px;
+    margin-bottom: 7px; }
+  .navbar-toggler .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%; }
+  .navbar-toggler .middle-bar {
+    opacity: 0; }
+  .navbar-toggler .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%; }
+  .navbar-toggler.collapsed .top-bar {
+    transform: rotate(0);
+    transform-origin: 10% 10%; }
+  .navbar-toggler.collapsed .middle-bar {
+    opacity: 1; }
+  .navbar-toggler.collapsed .bottom-bar {
+    transform: rotate(0);
+    transform-origin: 10% 90%; }
+
+/* Active Links */
+.navbar-nav > .nav-item {
+  margin: 0 15px; }
+.navbar-nav .nav-item .nav-link {
+  color: #ffffff; }
+.navbar-nav .nav-item.current_page_item {
+  background-color: #ffffff;
+  border-radius: 5px; }
+  .navbar-nav .nav-item.current_page_item > .nav-link {
+    color: #000000; }
+.navbar-nav .nav-item.dropdown .dropdown-menu .nav-link {
+  color: #000000; }
+
+/*
+ * Footer
+ */
+/*
+ * Overrides
+ */
+/*
+ * Back to top
+ */
+.backtotop {
+  width: 50px;
+  height: 50px;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0.7;
+  position: fixed;
+  cursor: pointer;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  background-color: #000000; }
+  .backtotop:hover {
+    background-color: #1f1f1f; }
+  .backtotop svg {
+    width: 56%; }
+
+/* Social Media Icon */
+.social-media h5 {
+  font-size: 1.10rem; }
+.social-media .social-menu a:hover {
+  text-decoration: none !important; }
+.social-media .social-menu a .social-icon {
+  width: 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+/*
+ * Comments
+ */
+.comment-list {
+  padding-left: 0; }
+  .comment-list .comment {
+    display: block; }
+    .comment-list .comment .comment-body .pull-left {
+      padding-right: 0.625rem; }
+    .comment-list .comment .comment-body .media-body .media-body-wrap .comment-content.card-block {
+      padding: 20px; }
+
+.progressivePlain {
+  height: 100%;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  position: relative;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+  .progressivePlain .progressivePlain-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  .progressivePlain .progressivePlain-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover; }
+  .progressivePlain .progressivePlain-thumbnail {
+    -webkit-filter: blur(30px);
+    filter: blur(30px);
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    overflow: hidden;
+    background-color: #f5f5f5; }
+  .progressivePlain .progressivePlain-original.lazyloaded ~ .progressivePlain-thumbnail {
+    opacity: 0;
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s; }
+  .progressivePlain .progressivePlain-original {
+    opacity: 0;
+    -webkit-transition: visibility 0s linear 0s,opacity .4s 0s;
+    -o-transition: visibility 0s linear 0s,opacity .4s 0s;
+    transition: visibility 0s linear 0s,opacity .4s 0s; }
+    .progressivePlain .progressivePlain-original.lazyloaded {
+      opacity: 1;
+      -webkit-transition: visibility 0s linear 0s, opacity 1s 0s;
+      -o-transition: visibility 0s linear 0s, opacity 1s 0s;
+      transition: visibility 0s linear 0s, opacity 1s 0s; }
+
+.image-blur {
+  overflow: hidden; }
+  .image-blur img {
+    -webkit-filter: blur(30px);
+    filter: blur(30px);
+    -o-object-fit: cover;
+    object-fit: cover;
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s; }
+    .image-blur img.lazyloaded {
+      -webkit-filter: blur(0);
+      filter: blur(0);
+      -webkit-transition: all ease .3s;
+      -o-transition: all ease .3s;
+      transition: all ease .3s; }
+
+/* Your fonts here */
+/*
+ * Fonts
+ */
+/* Your posts style here */
+/*
+ * Single Post
+ */
+.site-content .comment-navigation, .site-content .posts-navigation, .site-content .post-navigation {
+  margin: 0 0 1.5em;
+  overflow: hidden; }
+
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  word-wrap: normal !important; }
+
+.post-navigation {
+  padding-top: 1.875rem; }
+  .post-navigation .nav-links .nav-previous {
+    float: left;
+    width: 50%; }
+    .post-navigation .nav-links .nav-previous a::before {
+      content: "\2190 "; }
+  .post-navigation .nav-links .nav-next {
+    float: right;
+    text-align: right;
+    width: 50%; }
+    .post-navigation .nav-links .nav-next a::after {
+      content: " \2192"; }
+  .post-navigation .nav-links .nav-previous a, .post-navigation .nav-links .nav-next a {
+    border: 1px solid #ddd;
+    border-radius: 0.938rem;
+    display: inline-block;
+    padding: 0.313rem 0.875rem;
+    text-decoration: none; }
+
+/* Your pages style here */
+/* Your woocommerce style here */
+
+/*# sourceMappingURL=style.css.map */

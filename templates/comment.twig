@@ -1,0 +1,51 @@
+{% if post.comments %}
+    <li id="blog-comment-{{ comment.ID }}" class="{{ comment.comment_type }} depth-{{ comment._depth }} {{ (comment.children is not empty) ? 'parent' : '' }}">
+        <article id="comment-{{ comment.ID }}" class="comment-body media mb-4">
+            <a class="pull-left" href="#">
+                <img src="{{ comment.avatar(50) }}" alt="Image of {{comment.author.name}}" class="avatar photo" height="50" width="50" loading="lazy">
+            </a>
+            <div class="media-body">
+                <div class="media-body-wrap card">
+                    <div class="card-header">
+                        <h5 class="mt-0">
+                            <cite class="fn">
+                                {% if comment.comment_author_url is not empty %}
+                                    <a href="{{ comment.comment_author_url }}" rel="external nofollow ugc" class="url">{{ comment.author.name }}</a>
+                                {% else %}
+                                    {{ comment.author.name }}
+                                {% endif %}
+                            </cite>
+                            <span class="says">says:</span>
+                        </h5>
+                        <div class="comment-meta">
+                            <a href="{{ fn('get_comment_link', comment.ID) }}">
+                                <time datetime="{{ comment.comment_date }}">
+                                    {{ comment.date }} at {{ comment.time }}
+                                </time>
+                            </a>
+                            <a class="comment-edit-link" href="{{ fn('get_edit_comment_link', comment.ID) }}">
+                                <span style="margin-left: 5px;" class="glyphicon glyphicon-edit"></span> Edit
+                            </a>
+                        </div>
+                    </div>
+                    <div class="comment-content card-block">
+                        {% if not comment.approved %}
+                            <p class="comment-awaiting-moderation text-danger">Your comment is waiting for approval.</p>
+                        {% endif %}
+                        {{ comment.content|wpautop }}
+                    </div><!-- .comment-content -->
+                    <div class="reply comment-reply card-footer">
+                        {{ comment.reply_link('Reply') }}
+                    </div>
+                </div>
+            </div><!-- .media-body -->
+        </article><!-- .comment-body -->
+    
+    {% for cmt in comment.children %}
+        <!-- child comments -->
+        <ul class="children">
+            {% include 'comment.twig' with { comment:cmt } %}
+        </ul>
+    {% endfor %}
+    </li>
+{% endif %}

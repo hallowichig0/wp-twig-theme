@@ -1,0 +1,8 @@
+<form role="search" method="get" id="searchform" class="searchform" action="{{site.link}}">
+    <div class="input-group">
+        <input type="text" id="s" class="search-field form-control" name="s" placeholder="Search for..." value="{{ function('get_search_query') }}" />
+        <span class="input-group-btn">
+            <input id="searchsubmit" class="btn btn-secondary" type="submit" value="Search">
+        </span>
+    </div>
+</form>

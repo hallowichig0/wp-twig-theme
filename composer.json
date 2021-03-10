@@ -1,0 +1,30 @@
+{
+  "name": "hallowichig0/wp-twig-theme",
+  "license": "MIT",
+  "description": "Bootstrap 4 Boilerplate for Wordpress",
+  "homepage": "https://github.com/hallowichig0/wp-twig-theme",
+  "authors": [
+    {
+      "name": "Jayson Garcia",
+      "email": "garciajayson502@gmail.com",
+      "homepage": "https://github.com/hallowichig0"
+    }
+  ],
+  "keywords": [
+    "SASS",
+    "Bootstrap",
+    "ACF",
+    "Kirki",
+    "Timber",
+    "Wordpress"
+  ],
+  "type": "wordpress-theme",
+  "require": {
+    "php": ">=7.1"
+  },
+  "config": {
+    "github-oauth": {
+      "github.com": "4b6227c3f888a611099b8a438ab2576c0a6a0244"
+    }
+  }
+}

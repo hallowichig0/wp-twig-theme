@@ -1,0 +1,53 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {% set switch_sidebar = theme.theme_mod('sidebar_blog_toggleSwitch_setting') %}
+    <!-- Page Content -->
+    <div id="content" class="site-content">
+        <section class="container">
+            <!-- Title -->
+            <h1 class="entry-title mt-4">
+                {% if is_single %}
+                    {{ post.title }}
+                {% else %}
+                    <a href="{{ post.link }}" rel="bookmark">{{ post.title }}</a>
+                {% endif %}
+
+                <!-- Author -->
+                <small>
+                    by
+                    <a href="{{ post.author.path }}">{{ post.author.name }}</a>
+                </small>
+            </h1>
+
+            <!-- Breadcrumb -->
+            {{ breadcrumb() }}
+            
+            <div class="row">
+                <div class="col-12 {{ (not switch_sidebar) ? 'col-md-12' : 'col-md-8' }}">
+                    <!-- Post Content Column -->
+                    {% include 'template-parts/content-single.twig' %}
+                    {% if post.comments_open or post.comment_count > 0 %}
+                        <div id="comments" class="comments-area">
+                            <ul class="comment-list">
+                                {% for cmt in post.comments %}
+                                    {% include 'comment.twig' with { comment:cmt } %}
+                                {% endfor %}
+                            </ul>
+                            <!-- comment form -->
+                            {% if post.comment_status == "closed" %}
+                                <p> comments for this post are closed </p>
+                            {% else %}
+                                {% include "comment-form.twig" %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div><!-- #first -->
+
+                {% if switch_sidebar %}
+                    {% include 'sidebar.twig' %}
+                {% endif %}
+            </div><!-- .row -->
+        </section><!-- .container -->
+    </div><!-- #content -->
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<!-- Page Content -->
+<div id="content" class="site-content">
+	<section class="container">
+		<div class="row">
+			<div class="col-12">
+
+				<section class="error-404 not-found">
+					<header class="page-header">
+						<h1 class="page-title">{{ page_title|escape('html') }}</h1>
+					</header><!-- .page-header -->
+
+					<div class="page-content">
+						<p>{{ page_body|escape('html') }}</p>
+                        {% include 'searchform.twig' %}
+					</div><!-- .page-content -->
+				</section><!-- .error-404 -->
+
+			</div><!-- #first -->
+		</div><!-- .row -->
+	</section><!-- .container -->
+</div><!-- #content -->
+{% endblock %}

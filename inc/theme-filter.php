@@ -230,6 +230,32 @@ function disable_media_button( $settings ) {
 // add_filter( 'wp_editor_settings', 'disable_media_button');
 
 /**
+ * Add defer attribute to Google reCaptcha script (Contact Form 7 Recaptcha v2)
+ *
+ * @param String $tag		- Script HTML
+ * @param String $handle	- Unique identifier for script
+ *
+ * @return String $tag
+ */
+function prefix_add_defer_attribute( $tag, $handle ) {
+	
+	// The handle for our google recaptcha script is <code>google-recaptcha</code>
+	// IF it's not this handle return early
+	if( 'google-recaptcha' !== $handle ) {
+		return $tag;
+	}
+	
+	// IF we don't already have a defer attribute, add it
+	if( false === strpos( $tag, 'defer ' ) && false === strpos( $tag, ' defer' ) ) {
+		$tag = str_replace( 'src=', 'defer src=', $tag );
+	}
+	
+	return $tag;
+	
+}
+// add_filter( 'script_loader_tag', 'prefix_add_defer_attribute', 10, 2 );
+
+/**
  * Filter to change cols and rows in "woocommerce checkout order notes"
  */
 function custom_override_checkout_fields( $fields ) {
@@ -239,13 +265,3 @@ function custom_override_checkout_fields( $fields ) {
     return $fields;
 }
 // add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
-
-function parent_comment_SE_14130085($classes, $class, $comment_id, $post_id) {
-    $cur_comment = get_comment($comment_id);
-
-    if ( ! empty( $cur_comment->comment_parent ) ) {
-        $classes[] = 'nested';
-    }
-    return $classes;
-}
-add_filter('comment_class', 'parent_comment_SE_14130085', 10, 4);

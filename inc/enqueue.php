@@ -56,7 +56,6 @@ wp_enqueue_script('bootstrap-js', $directory_uri . '/library/bootstrap/dist/js/b
 // wp_enqueue_script('slick-js', $directory_uri . '/library/slick-carousel/slick/slick.js','','',true);
 wp_enqueue_script('plugins-js', $directory_uri . '/js/plugins.js','','',true);
 wp_enqueue_script('theme-js', $directory_uri . '/js/main.js','','',true);
-wp_enqueue_script('global-js', $directory_uri . '/js/global.js','','',true);
 
 if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
     wp_enqueue_script( 'comment-reply' );

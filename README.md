@@ -3,7 +3,7 @@ This boilerplate uses kirki customizer, acf, timber, sass, bootstrap 4, jquery.
 
 ## Features
 
-- Bootstrap **v4.3.1**
+- Bootstrap **v4.6.0**
 - With mobile detection library
 - Configured Bootstrap 4 SASS
 - Configured Kirki Customizer

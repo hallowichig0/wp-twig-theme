@@ -262,3 +262,78 @@ function remove_menu_pages() {
     }
 }
 add_action( 'admin_init', 'remove_menu_pages' );
+
+/**
+ * Hide submenu on appearance menu
+ */
+function hide_appearance_submenu() {
+    // check condition for the user means show menu for this user
+    if( !current_user_can('administrator') ) {
+        //We need this because the submenu's link (key from the array too) will always be generated with the current SERVER_URI in mind.
+        $customizer_url = add_query_arg( 'return', urlencode( remove_query_arg( wp_removable_query_args(), wp_unslash( $_SERVER['REQUEST_URI'] ) ) ), 'customize.php' );
+        $themes = 'themes.php';
+        $widget = 'widgets.php';
+        $menu = 'nav-menus.php';
+
+        // remove_submenu_page( 'themes.php', $customizer_url ); // remove customize from appearance menu
+        remove_submenu_page( 'themes.php', $themes ); // remove themes from appearance menu
+        remove_submenu_page( 'themes.php', $widget ); // remove widgets from appearance menu
+        remove_submenu_page( 'themes.php', $menu );// remove menus from appearance menu
+    }
+}
+add_action('admin_head', 'hide_appearance_submenu', 999);
+
+/**
+ * Unset section in customizer panel.
+ * Take Note: Only section is working. To unset the panel, please use customize_loaded_components hook instead.
+ * You can use remove_panel for kirki panels only
+ */
+function remove_customize_register( $wp_customize ) {
+    // check condition for the user means show menu for this user
+    if( !current_user_can('administrator') ) {
+
+        // Wordpress Core Section
+        $wp_customize->remove_section( 'title_tagline');
+        $wp_customize->remove_section( 'static_front_page');
+        $wp_customize->remove_section( 'custom_css');
+
+        // Kirki Panel
+        $wp_customize->remove_panel( 'sidebar_blog');
+
+        // Kirki Section
+        $wp_customize->remove_section( 'header_Logo');
+        $wp_customize->remove_section( 'header_background');
+        $wp_customize->remove_section( 'footer_background');
+
+        // Kirki Control
+        // $wp_customize->remove_control( 'your_settings');
+    }
+}
+add_action( 'customize_register', 'remove_customize_register', 100 );
+
+/**
+ * Disable Comments Menu
+ */
+function remove_comment() {
+    global $post_type;
+    // Remove comments metabox from dashboard
+    remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
+
+    // Disable support for comments and trackbacks in post types
+    foreach (get_post_types() as $post_type) {
+        if (post_type_supports($post_type, 'comments')) {
+            remove_post_type_support($post_type, 'comments');
+            remove_post_type_support($post_type, 'trackbacks');
+        }
+    }
+}
+// add_action( 'admin_init', 'remove_comment' );
+
+/**
+ * Disable Comments Admin Bar
+ */
+function remove_comment_admin_bar() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+}
+// add_action( 'wp_before_admin_bar_render', 'remove_comment_admin_bar' );

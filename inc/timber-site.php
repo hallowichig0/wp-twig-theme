@@ -10,9 +10,6 @@ class Bootstrap4Site extends Timber\Site {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
 
-		/**
-         * actions hook from theme-action
-         */
         add_action( 'after_setup_theme', array( $this, 'theme_supports' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'register_enqueue' ) );
         add_action( 'widgets_init', array( $this, 'register_widget' ) );

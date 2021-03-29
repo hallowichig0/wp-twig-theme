@@ -1,6 +1,6 @@
 {% set widgets = theme.theme_mod('sidebar_blog_widget_repeater') %}
 
-{% if is_home or fn('is_singular', ['post']) %}
+{% if is_home or fn('is_singular', ['post']) or is_archive %}
 
     <!-- Sidebar Widgets Column -->
     <aside id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">

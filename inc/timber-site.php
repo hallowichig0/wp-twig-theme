@@ -64,6 +64,7 @@ class Bootstrap4Site extends Timber\Site {
         $context['is_page'] = is_page();
         $context['is_home'] = is_home();
         $context['is_single'] = is_single();
+        $context['is_archive'] = is_archive();
         $context['is_search'] = is_search();
 		
 		return $context;
@@ -79,17 +80,14 @@ class Bootstrap4Site extends Timber\Site {
 	}
 
 	/** This is where you can add your own functions to twig.
-	 *  This is good to add your custom functions here
+	 *  This is good to add the wordpress default functions here
 	 * @param string $twig get extension.
 	 */
 	public function add_to_twig( $twig ) {
 		$twig->addExtension( new Twig\Extension\StringLoaderExtension() );	
 
 		// Adding a function. (1st param: This is the name that you will call on twig. 2nd param: Your function from php)
-        $twig->addFunction( new Timber\Twig_Function( 'custom_widget_search', 'get_widget_search' ) );
-        $twig->addFunction( new Timber\Twig_Function( 'custom_widget_category', 'get_widget_category' ) );
-        $twig->addFunction( new Timber\Twig_Function( 'custom_widget_archive', 'get_widget_archive' ) );
-        $twig->addFunction( new Timber\Twig_Function( 'breadcrumb', 'get_breadcrumb' ) );
+        // $twig->addFunction( new Timber\Twig_Function( 'name-that-you-want-to-call-in-twig', array($this, 'your-function-here') ) );
     
 		// Adding functions as filters.
 		// $twig->addFilter( new Twig\TwigFilter( 'myfoo', array( $this, 'myfoo' ) ) );
@@ -134,6 +132,11 @@ class Bootstrap4Site extends Timber\Site {
             'gallery',
             'caption',
         ) );
+        
+        /**
+         * woocommerce theme setup
+         */
+        // add_theme_support('woocommerce');
 
         /*
         * All Custom thumbnails

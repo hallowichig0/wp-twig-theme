@@ -5,3 +5,12 @@
  *
  * @package Bootstrap4
  */
+
+class Bootstrap4AjaxHandler extends Timber\Site {
+    /** Add timber support. */
+	public function __construct() {
+
+        parent::__construct();
+    }
+}
+new Bootstrap4AjaxHandler();

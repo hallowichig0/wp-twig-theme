@@ -1,10 +1,11 @@
 {% extends "base.twig" %}
 
 {% block content %}
+    {% set switch_sidebar = theme.theme_mod('sidebar_blog_toggleSwitch_setting') %}
     <div id="content" class="site-content">
         <section class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 {{ (not switch_sidebar) ? 'col-md-12' : 'col-md-8' }}">
                     <div class="page-header mt-4">
                         <h1 class="page-title">{{ post.title }}</h1>
                     </div>
@@ -17,6 +18,9 @@
                         {% include 'template-parts/content-none.twig' %}
                     {% endif %}
                 </div>
+                {% if switch_sidebar %}
+                    {% include 'sidebar.twig' %}
+                {% endif %}
             </div><!-- .row -->
         </section><!-- .container -->
     </div><!-- #content -->

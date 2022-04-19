@@ -20,11 +20,6 @@
   ],
   "type": "wordpress-theme",
   "require": {
-    "php": ">=7.1"
-  },
-  "config": {
-    "github-oauth": {
-      "github.com": "4b6227c3f888a611099b8a438ab2576c0a6a0244"
-    }
+    "php": ">=7.2"
   }
 }
